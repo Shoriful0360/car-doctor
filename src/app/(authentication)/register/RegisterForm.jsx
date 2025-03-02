@@ -1,8 +1,12 @@
+'use client'
 import Image from 'next/image';
 import login from '../../../../public/assets/images/login/login.svg'
 import Link from 'next/link';
+import { IoEye, IoEyeOffSharp } from "react-icons/io5";
+import { useState } from 'react';
 
 function RegisterForm() {
+    const [visible,setVisible]=useState(true)
     return (
         <div className='lg:flex justify-center mx-10 mt-10 space-y-5 gap-16 items-center'>
        <div className='flex justify-center'>
@@ -38,7 +42,7 @@ function RegisterForm() {
                   type="text"
                   required
                   autoComplete="text"
-                  className="block w-full rounded-md bg-white px-3 py-1.5 border-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                  className="block w-full rounded-md bg-white px-3 py-1.5 border-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-red-500 sm:text-sm/6"
                 />
               </div>
             </div>
@@ -51,10 +55,10 @@ function RegisterForm() {
                 <input
                   id="email"
                   name="email"
-                  type="email"
+                  type='email'
                   required
                   autoComplete="email"
-                  className="block w-full rounded-md bg-white px-3 py-1.5 border-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                  className="block w-full rounded-md bg-white px-3 py-1.5 border-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-red-500 sm:text-sm/6"
                 />
               </div>
             </div>
@@ -65,19 +69,28 @@ function RegisterForm() {
                   Confirm Password
                 </label>
                 <div className="text-sm">
-                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                  <a href="#" className="font-semibold outline-red-500 hover:outline-red-500">
                     Forgot password?
                   </a>
                 </div>
               </div>
-              <div className="mt-2">
+              <div className="mt-2 relative">
+             <div className='absolute right-5 top-3 cursor-pointer text-xl '>
+                {
+                    visible?       <IoEyeOffSharp onClick={()=>setVisible(false)}  />
+                    :
+                    
+                <IoEye onClick={()=>setVisible(true)}  />
+                }
+      
+             </div>
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={visible?'password':'text'}
                   required
                   autoComplete="current-password"
-                  className="block w-full rounded-md bg-white px-3 border-2 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-indigo-600 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                  className="block w-full rounded-md bg-white px-3 border-2 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-red-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-red-500 sm:text-sm/6"
                 />
               </div>
             </div>
@@ -85,7 +98,7 @@ function RegisterForm() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full justify-center rounded-md px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:outline-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
               >
                 Sign in
               </button>
